@@ -45,6 +45,7 @@ const Day = ({
     isDisabled,
     isCurrentMonth,
     isToday,
+    isDoneDate,
     isSelected,
     inRange,
     leftCrop,
@@ -61,6 +62,9 @@ const Day = ({
     defaultStyles.dayContainer,
     styles.day,
     isToday && styles.today,
+    isDoneDate && {
+      backgroundColor: 'rgb(90, 170, 68)',
+    },
     !isCurrentMonth && styles.outside,
     isSelected && styles.selected,
     isDisabled && styles.disabled,
@@ -72,6 +76,9 @@ const Day = ({
   const textStyle = StyleSheet.flatten([
     styles.day_label,
     isToday && styles.today_label,
+    isDoneDate && {
+      color: 'white',
+    },
     !isCurrentMonth && styles.outside_label,
     isSelected && styles.selected_label,
     isDisabled && styles.disabled_label,
@@ -175,6 +182,7 @@ const Day = ({
             style={containerStyle}
           >
             {components.Day(day)}
+            <Text>hi</Text>
           </Pressable>
         ) : (
           <Pressable

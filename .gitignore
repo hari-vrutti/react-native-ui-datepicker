@@ -73,3 +73,5 @@ android/keystores/debug.keystore
 
 .env
 web-build
+
+package-lock.json

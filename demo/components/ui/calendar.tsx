@@ -7,6 +7,7 @@ import DateTimePicker, {
 } from 'react-native-ui-datepicker';
 import Feather from '@expo/vector-icons/Feather';
 import { cssInterop } from 'nativewind';
+import { useEffect } from 'react';
 
 cssInterop(Feather, {
   className: {

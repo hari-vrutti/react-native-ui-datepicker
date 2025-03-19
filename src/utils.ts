@@ -103,6 +103,22 @@ export function areDatesOnSameDay(a: DateType, b: DateType) {
 }
 
 /**
+ * Check if a date exists in an array of dates
+ *
+ * @param a - array of dates to check against
+ * @param b - date to check
+ *
+ * @returns true if date exists in array, false otherwise
+ */
+export function areDateIsDone(a: DateType[], b: DateType): boolean {
+  if (!a || !b || !Array.isArray(a)) {
+    return false;
+  }
+
+  return a.some((date) => areDatesOnSameDay(date, b));
+}
+
+/**
  * Check if date is between two dates
  *
  * @param date - date to check

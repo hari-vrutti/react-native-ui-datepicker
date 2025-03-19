@@ -28,6 +28,7 @@ export type LocalState = {
   calendarView: CalendarViews;
   currentDate: DateType; // used for latest state of calendar based on Month and Year
   currentYear: number;
+  doneDate: DateType[];
 };
 
 export type CalendarAction = {
@@ -44,6 +45,7 @@ export type CalendarDay = {
   dayOfMonth?: number;
   isToday: boolean;
   isSelected: boolean;
+  isDoneDate: boolean;
   inRange: boolean;
   leftCrop: boolean;
   rightCrop: boolean;
@@ -140,6 +142,7 @@ export interface DatePickerBaseProps {
   min?: number;
   max?: number;
   onChange?: SingleChange | RangeChange | MultiChange;
+  doneDate?: DateType[];
   startYear?: number;
   endYear?: number;
   minDate?: DateType;

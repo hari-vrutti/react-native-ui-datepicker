@@ -111,6 +111,7 @@ const DateTimePicker = (
     onMonthChange = () => {},
     onYearChange = () => {},
     use12Hours,
+    doneDate,
   } = props;
 
   dayjs.tz.setDefault(timeZone);
@@ -196,6 +197,7 @@ const DateTimePicker = (
       calendarView: initialCalendarView,
       currentDate: initialDate,
       currentYear: initialDate.year(),
+      doneDate: doneDate,
     };
   }, [
     mode,
@@ -249,6 +251,12 @@ const DateTimePicker = (
             ...prevState,
             dates: selectedDates,
           };
+        case CalendarActionKind.CHANGE_DONE_DATE:
+          const { doneDate: done } = action.payload;
+          return {
+            ...prevState,
+            doneDate: done,
+          };
       }
     },
     initialState
@@ -266,6 +274,15 @@ const DateTimePicker = (
       });
     }
   }, [timeZone, prevTimezone]);
+
+  useEffect(() => {
+    if (doneDate) {
+      dispatch({
+        type: CalendarActionKind.CHANGE_DONE_DATE,
+        payload: { doneDate },
+      });
+    }
+  }, [doneDate]);
 
   useEffect(() => {
     if (mode === 'single') {

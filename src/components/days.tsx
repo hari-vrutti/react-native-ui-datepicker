@@ -10,6 +10,7 @@ import {
   areDatesOnSameDay,
   isDateBetween,
   getDate,
+  areDateIsDone,
 } from '../utils';
 import Weekdays from './weekdays';
 import { DateType } from 'src/types';
@@ -40,6 +41,7 @@ const Days = () => {
     multiRangeMode,
     hideWeekdays,
     components,
+    doneDate,
   } = useCalendarContext();
 
   const { year, month, hour, minute } = getParsedDate(currentDate);
@@ -97,6 +99,7 @@ const Days = () => {
       let inMiddle = false;
       let rangeStart = false;
       let rangeEnd = false;
+      let isDoneDate = false;
 
       if (mode === 'range') {
         rightCrop = false;
@@ -179,11 +182,13 @@ const Days = () => {
         }
       } else if (mode === 'single') {
         isSelected = areDatesOnSameDay(day.date, date);
+        isDoneDate = areDateIsDone(doneDate!, day.date);
       }
 
       return {
         ...day,
         isToday,
+        isDoneDate,
         isSelected,
         inRange,
         leftCrop,
@@ -212,6 +217,7 @@ const Days = () => {
     dates,
     multiRangeMode,
     currentDate,
+    doneDate,
   ]);
 
   return (
